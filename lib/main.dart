@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practice/todo.dart';
 
 void main() {
   runApp(const App());
@@ -26,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
   // 仮のデータスタブ
   final todos = List.generate(
     10,
-    (index) => 'Todo ${index + 1}',
+    (index) => ToDo(title: 'Todo ${index + 1}'),
   );
 
   @override
@@ -36,8 +37,14 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text('ToDo'),
       ),
       body: ListView.builder(
-        itemBuilder: (context, index) => ListTile(
-          title: Text(todos[index]),
+        itemBuilder: (context, index) => CheckboxListTile(
+          onChanged: (checked) {
+            setState(() {
+              todos[index].archived = !todos[index].archived;
+            });
+          },
+          value: todos[index].archived,
+          title: Text(todos[index].title),
         ),
         itemCount: todos.length,
       ),
@@ -45,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: const Icon(Icons.add),
         onPressed: () {
           setState(() {
-            todos.add('Todo ${todos.length + 1}');
+            todos.add(ToDo(title: 'Todo ${todos.length + 1}'));
           });
         },
       ),
