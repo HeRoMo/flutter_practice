@@ -36,6 +36,12 @@ class HomeScreen extends StatelessWidget {
         ),
         itemCount: todos.length,
       ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () {
+          todos.add('Todo ${todos.length + 1}');
+        },
+      ),
     );
   }
 }
