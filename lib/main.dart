@@ -39,8 +39,12 @@ class _HomeScreenState extends State<HomeScreen> {
       body: ListView.builder(
         itemBuilder: (context, index) => CheckboxListTile(
           onChanged: (checked) {
+            // 完了状態を反転させる
             setState(() {
-              todos[index].archived = !todos[index].archived;
+              final original = todos[index];
+              todos[index] = original.copyWith(
+                archived: !original.archived,
+              );
             });
           },
           value: todos[index].archived,
