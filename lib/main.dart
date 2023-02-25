@@ -15,17 +15,22 @@ class App extends StatelessWidget {
   }
 }
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    // 仮のデータスタブ
-    final todos = List.generate(
-      10,
-      (index) => 'Todo ${index + 1}',
-    );
+  State<HomeScreen> createState() => _HomeScreenState();
+}
 
+class _HomeScreenState extends State<HomeScreen> {
+  // 仮のデータスタブ
+  final todos = List.generate(
+    10,
+    (index) => 'Todo ${index + 1}',
+  );
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('ToDo'),
@@ -39,7 +44,9 @@ class HomeScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
-          todos.add('Todo ${todos.length + 1}');
+          setState(() {
+            todos.add('Todo ${todos.length + 1}');
+          });
         },
       ),
     );
