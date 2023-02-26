@@ -5,10 +5,14 @@ import 'package:sembast/sembast.dart';
 import 'package:sembast/sembast_io.dart';
 
 class DbHelper {
+  // 通常のコンストラクタ
+  DbHelper();
+
   // プライベートな名前付きコンストラクタ
   DbHelper._();
 
-  /// このクラスの同一のインスタンスを返す
+  // このクラスの同一のインスタンスを返す
+  @Deprecated('not use')
   static DbHelper get instance => _instance;
 
   // 初回の呼び出しでインスタンスを生成
