@@ -14,3 +14,11 @@ class ToDo with _$ToDo {
 
   factory ToDo.fromJson(Map<String, dynamic> json) => _$ToDoFromJson(json);
 }
+
+@freezed
+class ToDoRecord with _$ToDoRecord {
+  factory ToDoRecord(
+    int key,
+    ToDo value,
+  ) = _ToDoRecord;
+}
